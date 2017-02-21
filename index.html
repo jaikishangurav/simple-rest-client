@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="restClient">
+    <head>
+      <title>Simle Rest Client</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="/static/js/angular/angular.min.js"></script>
+      <script src="/static/js/app.js"></script>
+
+    </head>
+    <body>
+      <div class="container" ng-controller="RestClientCtrl as ctrl">
+        <h1 class="bg-primary">Simple Rest Client</h1>
+        <div class="form-group">
+            <input type="url" ng-model="ctrl.url" size="150" placeholder="Enter URL"></input>
+            <div class="container-fluid">
+              <label class="radio-inline"><input type="radio" ng-model="ctrl.httpMethod" value="GET" >GET</input></label>
+              <label class="radio-inline"><input type="radio" ng-model="ctrl.httpMethod" value="POST">POST</input></label>
+              <label class="radio-inline"><input type="radio" ng-model="ctrl.httpMethod" value="PUT">PUT</input></label>
+            </div>
+            <div class="container-fluid">
+            <div ng-repeat=" header in ctrl.headers">
+              <label class="text-inline"><input type="text" ng-model="header.name" placeholder="Header Name"></label>
+                <label class="text-inline"><input type="text" ng-model="header.value" placeholder="Header Value"></label>
+                <label class="button-inline"><button type="button" class="btn btn-default" ng-click="ctrl.removeHeader($index)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+
+            <button class="btn btn-link" ng-click="ctrl.addHeader()">Add Header</button>
+            </div>
+            <div class="container-fluid" ng-if="ctrl.httpMethod==='POST' || ctrl.httpMethod==='PUT'">
+              <label for="payload">Request Payload:</label>
+              <textarea class="form-control" id="payload" ng-model="ctrl.requestBody" >
+              </textarea>
+            </div>
+            <br/>
+            <div>
+            <button type="button" class="btn btn-info" ng-click="sendRequest()" >Send</button>
+          </div>
+      </div>
+      </div>
+    </body>
+</html>
