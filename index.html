@@ -13,7 +13,7 @@
       <div class="container" ng-controller="RestClientCtrl as ctrl">
         <h1 class="bg-primary">Simple Rest Client</h1>
         <div class="form-group">
-            <input type="url" ng-model="ctrl.url" size="150" placeholder="Enter URL"></input>
+            <input type="url" ng-model="ctrl.url" size="150" placeholder="Enter URL" value="ctrl.url"></input>
             <div class="container-fluid">
               <label class="radio-inline"><input type="radio" ng-model="ctrl.httpMethod" value="GET" >GET</input></label>
               <label class="radio-inline"><input type="radio" ng-model="ctrl.httpMethod" value="POST">POST</input></label>
@@ -37,7 +37,7 @@
             </div>
             <br/>
             <div>
-            <button type="button" class="btn btn-info" ng-click="sendRequest()" >Send</button>
+            <button type="button" class="btn btn-info" ng-click="ctrl.sendRequest()" >Send</button>
           </div>
       </div>
       </div>
